@@ -42,5 +42,6 @@ export function constructMetadata({
       creator: "jonney",
     },
     icons,
+    metadataBase: new URL("https://casecrafter.vercel.app/"),
   };
 }
