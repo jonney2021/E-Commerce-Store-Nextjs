@@ -285,7 +285,7 @@ const DesignConfigurator = ({
                       <Button
                         variant="outline"
                         role="combobox"
-                        className="w-full justify-betwwen"
+                        className="w-full justify-between"
                       >
                         {options.model.label}
                         <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

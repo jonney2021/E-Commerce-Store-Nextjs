@@ -6,7 +6,7 @@ import Stripe from "stripe";
 import { Resend } from "resend";
 import OrderReceivedEmail from "@/components/emails/OrderReceivedEmail";
 
-const resend = new Resend(process.env.RESND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: "CaseCrafter <yeminghuhym@gmail.com>",
         to: [event.data.object.customer_details.email],
-        subject: "Thank for your order!",
+        subject: "Thanks for your order!",
         react: OrderReceivedEmail({
           orderId,
           orderDate: updatedOrder.createdAt.toLocaleDateString(),
