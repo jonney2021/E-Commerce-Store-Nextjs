@@ -1,9 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { get } from "http";
 import { getPaymentStatus } from "./actions";
-import { use } from "react";
 import { useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import PhonePreview from "@/components/PhonePreview";
