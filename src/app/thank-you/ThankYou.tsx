@@ -118,9 +118,7 @@ const ThankYou = () => {
             </div>
 
             <div>
-              <p className="font-medium text-zinc-900">
-                Shipping Method Status
-              </p>
+              <p className="font-medium text-zinc-900">Shipping Method</p>
               <p className="mt-2 text-zinc-700">
                 DHL, takes up to 3 working days.
               </p>

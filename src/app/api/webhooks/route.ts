@@ -3,10 +3,19 @@ import { stripe } from "@/lib/stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { Resend } from "resend";
+// import { Resend } from "resend";
+import sgMail from "@sendgrid/mail";
 import OrderReceivedEmail from "@/components/emails/OrderReceivedEmail";
+import ReactDOMServer from "react-dom/server";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// const resend = new Resend(process.env.RESEND_API_KEY);
+const sendGridApiKey = process.env.SENDGRID_API_KEY;
+
+if (!sendGridApiKey) {
+  throw new Error("SENDGRID_API_KEY is not defined");
+}
+
+sgMail.setApiKey(sendGridApiKey);
 
 export async function POST(req: Request) {
   try {
@@ -70,11 +79,27 @@ export async function POST(req: Request) {
         },
       });
 
-      await resend.emails.send({
-        from: "CaseCrafter <yeminghuhym@gmail.com>",
-        to: [event.data.object.customer_details.email],
-        subject: "Thanks for your order!",
-        react: OrderReceivedEmail({
+      // await resend.emails.send({
+      //   from: "CaseCrafter <yeminghuhym@gmail.com>",
+      //   to: [event.data.object.customer_details.email],
+      //   subject: "Thanks for your order!",
+      //   react: OrderReceivedEmail({
+      //     orderId,
+      //     orderDate: updatedOrder.createdAt.toLocaleDateString(),
+      //     // @ts-ignore
+      //     shippingAddress: {
+      //       name: session.customer_details!.name!,
+      //       city: shippingAddress!.city!,
+      //       country: shippingAddress!.country!,
+      //       postalCode: shippingAddress!.postal_code!,
+      //       street: shippingAddress!.line1!,
+      //       state: shippingAddress!.state!,
+      //     },
+      //   }),
+      // });
+
+      const emailContent = ReactDOMServer.renderToStaticMarkup(
+        OrderReceivedEmail({
           orderId,
           orderDate: updatedOrder.createdAt.toLocaleDateString(),
           // @ts-ignore
@@ -86,8 +111,17 @@ export async function POST(req: Request) {
             street: shippingAddress!.line1!,
             state: shippingAddress!.state!,
           },
-        }),
-      });
+        })
+      );
+
+      const msg = {
+        to: event.data.object.customer_details.email,
+        from: "yeminghuhym@gmail.com",
+        subject: "Thanks for your order!",
+        html: emailContent, // Convert your React component to HTML
+      };
+
+      await sgMail.send(msg);
     }
 
     return NextResponse.json({ result: event, ok: true });
