@@ -98,27 +98,28 @@ export async function POST(req: Request) {
       //   }),
       // });
 
-      const emailContent = ReactDOMServer.renderToStaticMarkup(
-        OrderReceivedEmail({
-          orderId,
-          orderDate: updatedOrder.createdAt.toLocaleDateString(),
-          // @ts-ignore
-          shippingAddress: {
-            name: session.customer_details!.name!,
-            city: shippingAddress!.city!,
-            country: shippingAddress!.country!,
-            postalCode: shippingAddress!.postal_code!,
-            street: shippingAddress!.line1!,
-            state: shippingAddress!.state!,
-          },
-        })
-      );
+      const emailContent = OrderReceivedEmail({
+        orderId,
+        orderDate: updatedOrder.createdAt.toLocaleDateString(),
+        // @ts-ignore
+        shippingAddress: {
+          name: session.customer_details!.name!,
+          city: shippingAddress!.city!,
+          country: shippingAddress!.country!,
+          postalCode: shippingAddress!.postal_code!,
+          street: shippingAddress!.line1!,
+          state: shippingAddress!.state!,
+        },
+      });
+
+      // Render the JSX element to an HTML string
+      const htmlContent = ReactDOMServer.renderToStaticMarkup(emailContent);
 
       const msg = {
         to: event.data.object.customer_details.email,
         from: "yeminghuhym@gmail.com",
         subject: "Thanks for your order!",
-        html: emailContent, // Convert your React component to HTML
+        html: htmlContent,
       };
 
       await sgMail.send(msg);
