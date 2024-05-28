@@ -1636,17 +1636,7 @@
   "resolved" "https://registry.npmjs.org/@react-email/preview/-/preview-0.0.9.tgz"
   "version" "0.0.9"
 
-"@react-email/render@0.0.12":
-  "integrity" "sha512-S8WRv/PqECEi6x0QJBj0asnAb5GFtJaHlnByxLETLkgJjc76cxMYDH4r9wdbuJ4sjkcbpwP3LPnVzwS+aIjT7g=="
-  "resolved" "https://registry.npmjs.org/@react-email/render/-/render-0.0.12.tgz"
-  "version" "0.0.12"
-  dependencies:
-    "html-to-text" "9.0.5"
-    "js-beautify" "^1.14.11"
-    "react" "18.2.0"
-    "react-dom" "18.2.0"
-
-"@react-email/render@0.0.15":
+"@react-email/render@^0.0.15", "@react-email/render@0.0.15":
   "integrity" "sha512-/pT5dBu0y1mogrfEpc002rgRcXpbShK6PFtxTVU6LZZ+bccvZPgk67HKc01lxpa1eYGQgZ6I+VQ02GRnMDclTg=="
   "resolved" "https://registry.npmjs.org/@react-email/render/-/render-0.0.15.tgz"
   "version" "0.0.15"
@@ -1656,6 +1646,16 @@
     "react" "^18.2.0"
     "react-dom" "^18.2.0"
     "react-promise-suspense" "0.3.4"
+
+"@react-email/render@0.0.12":
+  "integrity" "sha512-S8WRv/PqECEi6x0QJBj0asnAb5GFtJaHlnByxLETLkgJjc76cxMYDH4r9wdbuJ4sjkcbpwP3LPnVzwS+aIjT7g=="
+  "resolved" "https://registry.npmjs.org/@react-email/render/-/render-0.0.12.tgz"
+  "version" "0.0.12"
+  dependencies:
+    "html-to-text" "9.0.5"
+    "js-beautify" "^1.14.11"
+    "react" "18.2.0"
+    "react-dom" "18.2.0"
 
 "@react-email/row@0.0.8":
   "integrity" "sha512-JsB6pxs/ZyjYpEML3nbwJRGAerjcN/Pa/QG48XUwnT/MioDWrUuyQuefw+CwCrSUZ2P1IDrv2tUD3/E3xzcoKw=="

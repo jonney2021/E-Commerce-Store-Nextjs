@@ -6,7 +6,7 @@ import Stripe from "stripe";
 // import { Resend } from "resend";
 import sgMail from "@sendgrid/mail";
 import OrderReceivedEmail from "@/components/emails/OrderReceivedEmail";
-import ReactDOMServer from "react-dom/server";
+import { render } from "@react-email/render";
 
 // const resend = new Resend(process.env.RESEND_API_KEY);
 const sendGridApiKey = process.env.SENDGRID_API_KEY;
@@ -98,28 +98,27 @@ export async function POST(req: Request) {
       //   }),
       // });
 
-      const emailContent = OrderReceivedEmail({
-        orderId,
-        orderDate: updatedOrder.createdAt.toLocaleDateString(),
-        // @ts-ignore
-        shippingAddress: {
-          name: session.customer_details!.name!,
-          city: shippingAddress!.city!,
-          country: shippingAddress!.country!,
-          postalCode: shippingAddress!.postal_code!,
-          street: shippingAddress!.line1!,
-          state: shippingAddress!.state!,
-        },
-      });
-
-      // Render the JSX element to an HTML string
-      const htmlContent = ReactDOMServer.renderToStaticMarkup(emailContent);
+      const emailContent = render(
+        OrderReceivedEmail({
+          orderId,
+          orderDate: updatedOrder.createdAt.toLocaleDateString(),
+          // @ts-ignore
+          shippingAddress: {
+            name: session.customer_details!.name!,
+            city: shippingAddress!.city!,
+            country: shippingAddress!.country!,
+            postalCode: shippingAddress!.postal_code!,
+            street: shippingAddress!.line1!,
+            state: shippingAddress!.state!,
+          },
+        })
+      );
 
       const msg = {
         to: event.data.object.customer_details.email,
         from: "yeminghuhym@gmail.com",
         subject: "Thanks for your order!",
-        html: htmlContent,
+        html: emailContent,
       };
 
       await sgMail.send(msg);
