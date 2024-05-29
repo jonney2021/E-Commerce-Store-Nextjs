@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a E-Commerce Shop(CaseCrafter) built with Next.js 14, Tailwind, React.
+
+## Highlights
+
+- Secret admin dashboard to manage orders
+- Authentication using Kinde
+- Drag-and-drop file uploads
+- Monern UI on top of shadcn-ui
+- Completely custom phone case configurator
+- Thank-you email after payment
+- Written in TypeScript
 
 ## Getting Started
 
