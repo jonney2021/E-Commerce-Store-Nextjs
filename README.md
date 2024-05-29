@@ -1,4 +1,4 @@
-This is a E-Commerce Shop(CaseCrafter) built with Next.js 14, Tailwind, React.
+This is an E-Commerce Shop(CaseCrafter) built with Next.js 14, Tailwind, React.
 
 ## Highlights
 
