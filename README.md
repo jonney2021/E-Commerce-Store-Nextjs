@@ -8,6 +8,8 @@ This is an E-Commerce Shop(CaseCrafter) built with Next.js 14, Tailwind, React.
 - Monern UI on top of shadcn-ui
 - Completely custom phone case configurator
 - Thank-you email after payment
+- Neon for PostgreSQL Database
+- Prisma ORM
 - Written in TypeScript
 
 ## Getting Started
